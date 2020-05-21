@@ -30,3 +30,18 @@ function operate(operator, x, y) {
       break;
   }
 }
+
+function displayNumber(button) {
+  let currentDisplay = document.querySelector("current");
+  if (currentDisplay.textContent === "0") {
+    currentDisplay.textContent = button.value;
+  }
+}
+
+function numberClick() {
+  const buttons = document.querySelectorAll(".digit");
+  console.log(buttons);
+  buttons.forEach(button => {button.addEventListener("click", displayNumber)});
+}
+
+numberClick();

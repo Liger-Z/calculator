@@ -44,7 +44,7 @@ button:hover {
   justify-content: center;
   align-items: center;
   width: 400px;
-  margin: 0 auto;
+  margin: 50px auto;
   background-color: #1D3557;
   border-radius: 5px;
   box-shadow: 10px 5px 3px rgba(19, 34, 56, 0.911);
