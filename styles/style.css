@@ -1,12 +1,13 @@
 html {
   background-color: #F1FAEE;
+  box-sizing: border-box;
 }
 
 body{
   margin: 0;
 }
 
-.header {
+.header-container {
   display: flex;
   margin 0 auto;
   justify-content: center;
@@ -18,4 +19,54 @@ body{
   font-size: 50px;
   color: #1D3557;
   margin: 20px;
+}
+
+button {
+  font-family: "Open Sans";
+  background-color: rgba(168, 218, 220, 70%);
+  border: 2px solid transparent;
+  padding: 5px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 3px;
+  width: 80px;
+  color:#000000;
+}
+
+button:hover {
+  background-color: rgba(168, 218, 220, 100%)
+}
+
+.calculator-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 340px;
+  margin: 0 auto;
+  background-color: #1D3557;
+  border-radius: 5px;
+  box-shadow: 10px 5px 3px rgba(19, 34, 56, 0.911);
+}
+
+.display-container {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  background-color: #FFFFFF;
+  width: 90%;
+  height: 40px;
+  margin: 15px;
+  padding: 0px 5px;
+  font-weight: bold;
+  font-family: "Open Sans";
+  font-size: 20px;
+}
+
+.button-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: 15px;
 }
