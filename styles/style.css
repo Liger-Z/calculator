@@ -9,7 +9,7 @@ body{
 
 .header-container {
   display: flex;
-  margin 0 auto;
+  margin: 0 auto;
   justify-content: center;
   align-items: center;
 }
@@ -29,8 +29,8 @@ button {
   border-radius: 4px;
   font-weight: bold;
   font-size: 20px;
-  margin: 3px;
-  width: 80px;
+  margin: 8px 5px;
+  width: 100px;
   color:#000000;
 }
 
@@ -43,7 +43,7 @@ button:hover {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  width: 340px;
+  width: 400px;
   margin: 0 auto;
   background-color: #1D3557;
   border-radius: 5px;
@@ -54,14 +54,35 @@ button:hover {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
+  align-items: center;
   background-color: #FFFFFF;
   width: 90%;
-  height: 40px;
+  height: 80px;
   margin: 15px;
   padding: 0px 5px;
+  border-radius: 5px;
   font-weight: bold;
   font-family: "Open Sans";
-  font-size: 20px;
+  font-size: 28px;
+}
+
+#result {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 40%;
+  color: #00000093;
+}
+
+#current {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 40%;
 }
 
 .button-container {
@@ -69,4 +90,8 @@ button:hover {
   flex-flow: row wrap;
   justify-content: center;
   margin: 15px;
+}
+
+#clear {
+  background-color: #E63946;
 }
