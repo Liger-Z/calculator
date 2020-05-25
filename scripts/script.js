@@ -31,17 +31,29 @@ function operate(operator, x, y) {
   }
 }
 
-function displayNumber(button) {
-  let currentDisplay = document.querySelector("current");
-  if (currentDisplay.textContent === "0") {
-    currentDisplay.textContent = button.value;
+function displayNumber() {
+  let currentDisplay = document.querySelector("#current");
+  if (currentDisplay.textContent === "\n          0\n        " || currentDisplay.textContent === "0") {
+    currentDisplay.textContent = this.textContent;
+  }else {
+    currentDisplay.textContent += this.textContent;
   }
+
+  currentNumber = parseInt(currentDisplay.textContent);
 }
 
 function numberClick() {
+  let currentDisplay = document.querySelector("#current");
   const buttons = document.querySelectorAll(".digit");
-  console.log(buttons);
   buttons.forEach(button => {button.addEventListener("click", displayNumber)});
 }
 
+function operatorClick() {
+  let currentDisplay = document.querySelector("#current");
+  const buttons = document.querySelectorAll(".operator");
+  buttons.forEach(button => {button.addEventListener("click", )})
+}
+
+let currentNumber = 0;
 numberClick();
+operatorClick();
