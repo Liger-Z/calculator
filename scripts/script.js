@@ -33,13 +33,23 @@ function operate(operator, x, y) {
 
 function displayNumber() {
   let currentDisplay = document.querySelector("#current");
-  if (currentDisplay.textContent === "\n          0\n        " || currentDisplay.textContent === "0") {
+  if (currentNumber === "0" || currentDisplay.textContent === "\n          0\n        ") {
+    currentNumber = this.textContent;
     currentDisplay.textContent = this.textContent;
   }else {
+    currentNumber += this.textContent;
     currentDisplay.textContent += this.textContent;
   }
+}
 
-  currentNumber = parseInt(currentDisplay.textContent);
+function displayOperator() {
+  let currentDisplay = document.querySelector("#current");
+  console.log(this)
+  currentDisplay.textContent += this.textContent;
+  numberArray.push(currentNumber);
+  numberArray.push(this.value);
+  currentNumber = '';
+  console.log(numberArray)
 }
 
 function numberClick() {
@@ -51,9 +61,11 @@ function numberClick() {
 function operatorClick() {
   let currentDisplay = document.querySelector("#current");
   const buttons = document.querySelectorAll(".operator");
-  buttons.forEach(button => {button.addEventListener("click", )})
+  buttons.forEach(button => {button.addEventListener("click", displayOperator)})
 }
 
-let currentNumber = 0;
+let currentNumber = '';
+let numberArray = [];
+
 numberClick();
 operatorClick();

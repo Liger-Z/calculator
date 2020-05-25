@@ -107,3 +107,11 @@ button:hover {
 .operator:hover{
   background-color: rgba(69, 123, 157, 1.0);
 }
+
+.equals {
+  background-color: rgba(69, 123, 157, 0.8);
+}
+
+.equals:hover {
+  background-color: rgba(69, 123, 157, 1.0);
+}
