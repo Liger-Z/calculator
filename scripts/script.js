@@ -43,29 +43,44 @@ function displayNumber() {
 }
 
 function displayOperator() {
+  if (currentNumber === '') {
+    return null;
+  }else {
   let currentDisplay = document.querySelector("#current");
-  console.log(this)
   currentDisplay.textContent += this.textContent;
   numberArray.push(currentNumber);
   numberArray.push(this.value);
   currentNumber = '';
-  console.log(numberArray)
+  }
 }
 
-function numberClick() {
-  let currentDisplay = document.querySelector("#current");
-  const buttons = document.querySelectorAll(".digit");
-  buttons.forEach(button => {button.addEventListener("click", displayNumber)});
+function buttonClick() {
+  const numberButtons = document.querySelectorAll(".digit");
+  const operatorButtons = document.querySelectorAll(".operator");
+  const equalsButton = document.querySelector(".equals");
+
+  numberButtons.forEach(button => {button.addEventListener("click", displayNumber)});
+  operatorButtons.forEach(button => {button.addEventListener("click", displayOperator)});
+  equalsButton.addEventListener("click", calculation);
 }
 
-function operatorClick() {
-  let currentDisplay = document.querySelector("#current");
-  const buttons = document.querySelectorAll(".operator");
-  buttons.forEach(button => {button.addEventListener("click", displayOperator)})
+function calculation() {
+  while (calcArray.length > 3) {
+    calcArray = [];
+    for (let i = 0; i < numberArray.length; i++) {
+      if (numberArray[i] === "multiply") {
+        calcArray.splice(i - 1, 1);
+        calcArray.push(operate("multiply", numberArray[i-1], numberArray[i+1]));
+      }else {
+        calcArray.push(numberArray[i]);
+      }
+      }
+    }  
+  }
 }
 
 let currentNumber = '';
 let numberArray = [];
+let calcArray = [null, null, null, null];
 
-numberClick();
-operatorClick();
+buttonClick()
