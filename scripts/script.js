@@ -30,6 +30,15 @@ function operate(operator, x, y) {
       break;
   }
 }
+function buttonClick() {
+  const numberButtons = document.querySelectorAll(".digit");
+  const operatorButtons = document.querySelectorAll(".operator");
+  const equalsButton = document.querySelector(".equals");
+
+  numberButtons.forEach(button => {button.addEventListener("click", displayNumber)});
+  operatorButtons.forEach(button => {button.addEventListener("click", displayOperator)});
+  equalsButton.addEventListener("click", displayResult);
+}
 
 function displayNumber() {
   let currentDisplay = document.querySelector("#current");
@@ -55,14 +64,11 @@ function displayOperator() {
   }
 }
 
-function buttonClick() {
-  const numberButtons = document.querySelectorAll(".digit");
-  const operatorButtons = document.querySelectorAll(".operator");
-  const equalsButton = document.querySelector(".equals");
-
-  numberButtons.forEach(button => {button.addEventListener("click", displayNumber)});
-  operatorButtons.forEach(button => {button.addEventListener("click", displayOperator)});
-  equalsButton.addEventListener("click", calculation);
+function displayResult() {
+  let currentDisplay = document.querySelector("#current");
+  let resultDisplay = document.querySelector("#result");
+  resultDisplay.textContent = currentDisplay.textContent;
+  currentDisplay.textContent = calculation();
 }
 
 function calculation() {
