@@ -1,17 +1,17 @@
 function add(x, y) {
-  return x + y;
+  return parseInt(x) + parseInt(y);
 }
 
 function subtract(x, y) {
-  return x - y;
+  return parseInt(x) - parseInt(y);
 }
 
 function multiply(x, y) {
-  return x * y;
+  return parseInt(x) * parseInt(y);
 }
 
 function divide(x, y) {
-  return x / y;
+  return parseInt(x) / parseInt(y);
 }
 
 function operate(operator, x, y) {
@@ -66,7 +66,6 @@ function buttonClick() {
 }
 
 function calculation() {
-  let calcArray = [];
   numberArray.push(currentNumber);
 
   for (let i = 0; i < numberArray.length; i++) {
@@ -78,7 +77,18 @@ function calculation() {
       i -= 2;
     }
   }
-  console.log(numberArray)
+
+  for (let i = 0; i < numberArray.length; i++) {
+    if (numberArray[i] === "add") {
+      numberArray.splice(i - 1, 3, operate("add", numberArray[i-1], numberArray[i+1]));
+      i -= 2;
+    }else if (numberArray[i] === "subtract") {
+      numberArray.splice(i - 1, 3, operate("subtract", numberArray[i-1], numberArray[i+1]));
+      i -= 2;
+    }
+  }
+
+  return numberArray[0];
 }  
 
 
