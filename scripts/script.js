@@ -34,10 +34,12 @@ function buttonClick() {
   const numberButtons = document.querySelectorAll(".digit");
   const operatorButtons = document.querySelectorAll(".operator");
   const equalsButton = document.querySelector(".equals");
+  const allClearButton = document.querySelector("#allclear");
 
   numberButtons.forEach(button => {button.addEventListener("click", displayNumber)});
   operatorButtons.forEach(button => {button.addEventListener("click", displayOperator)});
   equalsButton.addEventListener("click", displayResult);
+  allClearButton.addEventListener("click", allClear);
 }
 
 function displayNumber() {
@@ -65,10 +67,24 @@ function displayOperator() {
 }
 
 function displayResult() {
+  if (currentNumber === '') {
+    return null;
+  }else{
+    let currentDisplay = document.querySelector("#current");
+    let previousDisplay = document.querySelector("#previous");
+    previousDisplay.textContent = currentDisplay.textContent;
+    currentDisplay.textContent = calculation();
+  }
+}
+
+function allClear() {
   let currentDisplay = document.querySelector("#current");
-  let resultDisplay = document.querySelector("#result");
-  resultDisplay.textContent = currentDisplay.textContent;
-  currentDisplay.textContent = calculation();
+  let previousDisplay = document.querySelector("#previous");
+
+  currentNumber = "";
+  numberArray = [];
+  currentDisplay.textContent = "0";
+  previousDisplay.textContent = "0";
 }
 
 function calculation() {
@@ -98,7 +114,7 @@ function calculation() {
 }  
 
 
-let currentNumber = '';
+let currentNumber = "";
 let numberArray = [];
 
 buttonClick()
