@@ -66,37 +66,23 @@ function buttonClick() {
 }
 
 function calculation() {
-  calcArray = [];
+  let calcArray = [];
   numberArray.push(currentNumber);
-  
-   for (let i = 0; i < numberArray.length; i++) {
-     if (numberArray[i] === "multiply") {
-       calcArray.splice(i - 1, 1);
-      calcArray.push(operate("multiply", numberArray[i-1], numberArray[i+1]));
-       i += 1;
-     }else {
-      calcArray.push(numberArray[i]);
-     }
-   }
 
-  numberArray = calcArray.slice();
-  calcArray = [];
-   for (let i = 0; i < numberArray.length; i++) {
-    if (numberArray[i] === "divide") {
-      calcArray.splice(i - 1, 1);
-      calcArray.push(operate("divide", numberArray[i-1], numberArray[i+1]));
-      i += 1;
-    }else {
-      calcArray.push(numberArray[i]);
+  for (let i = 0; i < numberArray.length; i++) {
+    if (numberArray[i] === "multiply") {
+      numberArray.splice(i - 1, 3, operate("multiply", numberArray[i-1], numberArray[i+1]));
+      i -= 2;
+    }else if (numberArray[i] === "divide") {
+      numberArray.splice(i - 1, 3, operate("divide", numberArray[i-1], numberArray[i+1]));
+      i -= 2;
     }
   }
-
-  console.log(calcArray);
+  console.log(numberArray)
 }  
 
 
 let currentNumber = '';
 let numberArray = [];
-let calcArray = [null, null, null, null];
 
 buttonClick()
