@@ -51,6 +51,7 @@ function displayOperator() {
   numberArray.push(currentNumber);
   numberArray.push(this.value);
   currentNumber = '';
+  console.log(numberArray)
   }
 }
 
@@ -65,19 +66,34 @@ function buttonClick() {
 }
 
 function calculation() {
-  while (calcArray.length > 3) {
-    calcArray = [];
-    for (let i = 0; i < numberArray.length; i++) {
-      if (numberArray[i] === "multiply") {
-        calcArray.splice(i - 1, 1);
-        calcArray.push(operate("multiply", numberArray[i-1], numberArray[i+1]));
-      }else {
-        calcArray.push(numberArray[i]);
-      }
-      }
-    }  
+  calcArray = [];
+  numberArray.push(currentNumber);
+  
+   for (let i = 0; i < numberArray.length; i++) {
+     if (numberArray[i] === "multiply") {
+       calcArray.splice(i - 1, 1);
+      calcArray.push(operate("multiply", numberArray[i-1], numberArray[i+1]));
+       i += 1;
+     }else {
+      calcArray.push(numberArray[i]);
+     }
+   }
+
+  numberArray = calcArray.slice();
+  calcArray = [];
+   for (let i = 0; i < numberArray.length; i++) {
+    if (numberArray[i] === "divide") {
+      calcArray.splice(i - 1, 1);
+      calcArray.push(operate("divide", numberArray[i-1], numberArray[i+1]));
+      i += 1;
+    }else {
+      calcArray.push(numberArray[i]);
+    }
   }
-}
+
+  console.log(calcArray);
+}  
+
 
 let currentNumber = '';
 let numberArray = [];
