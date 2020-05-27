@@ -41,12 +41,21 @@ function buttonClick() {
   equalsButton.addEventListener("click", displayResult);
   allClearButton.addEventListener("click", allClear);
 }
-
+/*
+  Pressing a number button directly after pressing the equals button should 
+  start a brand new calculation. Thus an all clear should be peformed before 
+  starting a new number.
+*/
 function displayNumber() {
   let currentDisplay = document.querySelector("#current");
   if (currentNumber === "0" || currentDisplay.textContent === "\n          0\n        ") {
     currentNumber = this.textContent;
     currentDisplay.textContent = this.textContent;
+  }else if (equalsPressed === true) { 
+    allClear();
+    currentNumber = this.textContent;
+    currentDisplay.textContent = this.textContent;
+    equalsPressed = false;
   }else {
     currentNumber += this.textContent;
     currentDisplay.textContent += this.textContent;
@@ -54,7 +63,7 @@ function displayNumber() {
 }
 
 function displayOperator() {
-  if (currentNumber === '') {
+  if (currentNumber === "") { // This stops the user from inputting two operators in a row
     return null;
   }else {
   let currentDisplay = document.querySelector("#current");
@@ -62,18 +71,20 @@ function displayOperator() {
   numberArray.push(currentNumber);
   numberArray.push(this.value);
   currentNumber = '';
-  console.log(numberArray)
   }
 }
 
 function displayResult() {
-  if (currentNumber === '') {
+  if (currentNumber === "") { // If the last button pressed was not a number, this function will not run
     return null;
   }else{
     let currentDisplay = document.querySelector("#current");
     let previousDisplay = document.querySelector("#previous");
     previousDisplay.textContent = currentDisplay.textContent;
     currentDisplay.textContent = calculation();
+    currentNumber = numberArray[0];
+    numberArray = [];
+    equalsPressed = true;
   }
 }
 
@@ -81,7 +92,7 @@ function allClear() {
   let currentDisplay = document.querySelector("#current");
   let previousDisplay = document.querySelector("#previous");
 
-  currentNumber = "";
+  currentNumber = "0";
   numberArray = [];
   currentDisplay.textContent = "0";
   previousDisplay.textContent = "0";
@@ -116,5 +127,5 @@ function calculation() {
 
 let currentNumber = "";
 let numberArray = [];
-
+let equalsPressed = false;
 buttonClick()
