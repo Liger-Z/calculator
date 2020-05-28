@@ -52,14 +52,14 @@ function buttonClick() {
 function displayNumber() {
   let currentDisplay = document.querySelector("#current");
   let decimalButton = document.querySelector("#decimal");
-  if (currentNumber === "0" || currentDisplay.textContent === "\n          0\n        ") {
-    currentNumber = this.textContent;
-    currentDisplay.textContent = this.textContent;
-  }else if (equalsPressed === true) { 
+  if (equalsPressed === true) { 
     allClear();
     currentNumber = this.textContent;
     currentDisplay.textContent = this.textContent;
     equalsPressed = false;
+  }else if (currentNumber === "0" || currentDisplay.textContent === "\n          0\n        ") {
+    currentNumber = this.textContent;
+    currentDisplay.textContent = this.textContent;
   }else {
     currentNumber += this.textContent;
     currentDisplay.textContent += this.textContent;
@@ -93,13 +93,13 @@ function displayResult() {
     let previousDisplay = document.querySelector("#previous");
     previousDisplay.textContent = currentDisplay.textContent;
     currentDisplay.textContent = calculation();
+    equalsPressed = true;
 
     if (zeroDivide === true) {
       divideByZero();
     }else {
       currentNumber = numberArray[0];
       numberArray = [];
-      equalsPressed = true;
     }
   }
 }
@@ -147,7 +147,7 @@ function divideByZero() {
   let currentDisplay = document.querySelector("#current");
   let previousDisplay = document.querySelector("#previous");
   previousDisplay.textContent = "0̶̤͕̩̫̫͈̣̄̈́̿̌̕0̵͎͈̅0̸̙̅̓̈́̄0̵̪̲̙̞̓̑̃̽0̴͖̲̱̳̰́͑̒̆͠͝0̷̥̈̍̒̈́͐͒0̴̦̹̹̃̉̃0̶̢͈̺͍̲́̓͑̓̇̈́̕0̸͚̆͆̈́̈̌̄̈ͅ0̸̢̦̰̠͓̥̞͋0̵͙͕̠͙̲̖̜̈́̋̈́̋̏ͅ0̴͓̣̇̏̅0̴̧͔̬͕̥͇̀̍͛͐̉̓́̌0̸̗͛̏̀̄͝0̴̝͓̲͓͔̻͙̣͆0̶̥̞̩̼̰̒͑́͋̉̃̓̓0̷̺̪̞͍͔̰̈́̄́0̸̦̲͔͒̆͂̏̓̕0̶̨̜͕͖̘̹͉̿́͌̉0̸͖̆0̴̮̬͇̈́̃͊";
-  currentDisplay.textContent = "Ị̷͋ņ̶̲̜̏f̴̭̪͘i̵̛͕̰n̶̰͒͂͘ï̸̬̋̕t̵̳̺̩͐͛̌y̸̮͘̚";
+  currentDisplay.textContent = "E̷̙͋ͅŕ̶̞͙͐r̸̫̎̍͜o̸͖͍̠͆r̸͉͈͙̝̯̫̠̍̈";
 }
 
 let currentNumber = "";
