@@ -140,7 +140,7 @@ function calculation() {
     }
   }
 
-  return numberArray[0];
+  return Math.round((numberArray[0] * 1000000000)) / 1000000000;
 }  
 
 function divideByZero() {

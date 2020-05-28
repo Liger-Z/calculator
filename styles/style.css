@@ -64,6 +64,7 @@ button:hover {
   font-weight: bold;
   font-family: "Open Sans";
   font-size: 28px;
+  overflow: hidden;
 }
 
 #previous {
