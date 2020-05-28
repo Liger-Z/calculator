@@ -38,11 +38,13 @@ function buttonClick() {
   const operatorButtons = document.querySelectorAll(".operator");
   const equalsButton = document.querySelector(".equals");
   const allClearButton = document.querySelector("#allclear");
+  const deleteButton = document.querySelector("#delete");
 
   numberButtons.forEach(button => {button.addEventListener("click", displayNumber)});
   operatorButtons.forEach(button => {button.addEventListener("click", displayOperator)});
   equalsButton.addEventListener("click", displayResult);
   allClearButton.addEventListener("click", allClear);
+  deleteButton.addEventListener("click", deleteEntry);
 }
 /*
   Pressing a number button directly after pressing the equals button should 
@@ -117,6 +119,19 @@ function allClear() {
   decimalButton.addEventListener("click", displayNumber)
 }
 
+function deleteEntry() {
+  let currentDisplay = document.querySelector("#current");
+  numberText = currentDisplay.textContent;
+  currentDisplay.textContent = numberText.slice(0, numberText.length - 1);
+
+  if (numberText[numberText.length - 1] in operatorObj) {
+    currentNumber = numberArray[numberArray.length - 2];
+    numberArray.splice(numberArray.length - 2, 2);
+  }else {
+    currentNumber = currentNumber.slice(0, currentNumber.length - 1);
+  }
+}
+
 function calculation() {
   numberArray.push(currentNumber);
 
@@ -154,4 +169,10 @@ let currentNumber = "";
 let numberArray = [];
 let equalsPressed = false;
 let zeroDivide = false;
+let operatorObj = {
+  "-": null,
+  "+": null,
+  "&times": null,
+  "&divide": null
+}
 buttonClick()
