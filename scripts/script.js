@@ -1,17 +1,20 @@
 function add(x, y) {
-  return parseInt(x) + parseInt(y);
+  return parseFloat(x) + parseFloat(y);
 }
 
 function subtract(x, y) {
-  return parseInt(x) - parseInt(y);
+  return parseFloat(x) - parseFloat(y);
 }
 
 function multiply(x, y) {
-  return parseInt(x) * parseInt(y);
+  return parseFloat(x) * parseFloat(y);
 }
 
 function divide(x, y) {
-  return parseInt(x) / parseInt(y);
+  if (y == 0) {
+    zeroDivide = true;
+  }
+  return parseFloat(x) / parseFloat(y);
 }
 
 function operate(operator, x, y) {
@@ -48,6 +51,7 @@ function buttonClick() {
 */
 function displayNumber() {
   let currentDisplay = document.querySelector("#current");
+  let decimalButton = document.querySelector("#decimal");
   if (currentNumber === "0" || currentDisplay.textContent === "\n          0\n        ") {
     currentNumber = this.textContent;
     currentDisplay.textContent = this.textContent;
@@ -60,6 +64,10 @@ function displayNumber() {
     currentNumber += this.textContent;
     currentDisplay.textContent += this.textContent;
   }
+
+  if (this.textContent === ".") {
+    decimalButton.removeEventListener("click", displayNumber);
+  }
 }
 
 function displayOperator() {
@@ -67,10 +75,13 @@ function displayOperator() {
     return null;
   }else {
   let currentDisplay = document.querySelector("#current");
+  let decimalButton = document.querySelector("#decimal");
   currentDisplay.textContent += this.textContent;
   numberArray.push(currentNumber);
   numberArray.push(this.value);
   currentNumber = '';
+  equalsPressed = false;
+  decimalButton.addEventListener("click", displayNumber);
   }
 }
 
@@ -82,20 +93,28 @@ function displayResult() {
     let previousDisplay = document.querySelector("#previous");
     previousDisplay.textContent = currentDisplay.textContent;
     currentDisplay.textContent = calculation();
-    currentNumber = numberArray[0];
-    numberArray = [];
-    equalsPressed = true;
+
+    if (zeroDivide === true) {
+      divideByZero();
+    }else {
+      currentNumber = numberArray[0];
+      numberArray = [];
+      equalsPressed = true;
+    }
   }
 }
 
 function allClear() {
   let currentDisplay = document.querySelector("#current");
   let previousDisplay = document.querySelector("#previous");
+  let decimalButton = document.querySelector("#decimal");
 
   currentNumber = "0";
   numberArray = [];
   currentDisplay.textContent = "0";
   previousDisplay.textContent = "0";
+  zeroDivide = false;
+  decimalButton.addEventListener("click", displayNumber)
 }
 
 function calculation() {
@@ -124,8 +143,15 @@ function calculation() {
   return numberArray[0];
 }  
 
+function divideByZero() {
+  let currentDisplay = document.querySelector("#current");
+  let previousDisplay = document.querySelector("#previous");
+  previousDisplay.textContent = "0̶̤͕̩̫̫͈̣̄̈́̿̌̕0̵͎͈̅0̸̙̅̓̈́̄0̵̪̲̙̞̓̑̃̽0̴͖̲̱̳̰́͑̒̆͠͝0̷̥̈̍̒̈́͐͒0̴̦̹̹̃̉̃0̶̢͈̺͍̲́̓͑̓̇̈́̕0̸͚̆͆̈́̈̌̄̈ͅ0̸̢̦̰̠͓̥̞͋0̵͙͕̠͙̲̖̜̈́̋̈́̋̏ͅ0̴͓̣̇̏̅0̴̧͔̬͕̥͇̀̍͛͐̉̓́̌0̸̗͛̏̀̄͝0̴̝͓̲͓͔̻͙̣͆0̶̥̞̩̼̰̒͑́͋̉̃̓̓0̷̺̪̞͍͔̰̈́̄́0̸̦̲͔͒̆͂̏̓̕0̶̨̜͕͖̘̹͉̿́͌̉0̸͖̆0̴̮̬͇̈́̃͊";
+  currentDisplay.textContent = "Ị̷͋ņ̶̲̜̏f̴̭̪͘i̵̛͕̰n̶̰͒͂͘ï̸̬̋̕t̵̳̺̩͐͛̌y̸̮͘̚";
+}
 
 let currentNumber = "";
 let numberArray = [];
 let equalsPressed = false;
+let zeroDivide = false;
 buttonClick()
