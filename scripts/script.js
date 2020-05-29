@@ -6,38 +6,22 @@ Pressing equals will store the currentNumber into the array, and then the calcul
 will begin.
 */
 
-function add(x, y) {
-  return parseFloat(x) + parseFloat(y);
-}
-
-function subtract(x, y) {
-  return parseFloat(x) - parseFloat(y);
-}
-
-function multiply(x, y) {
-  return parseFloat(x) * parseFloat(y);
-}
-
-function divide(x, y) {
-  if (y == 0) {
-    zeroDivide = true;
-  }
-  return parseFloat(x) / parseFloat(y);
-}
-
 function operate(operator, x, y) {
   switch (operator) {
     case "add":
-      return add(x, y);
+      return parseFloat(x) + parseFloat(y);
       break;
     case "subtract":
-      return subtract(x, y);
+      return parseFloat(x) - parseFloat(y);
       break;
     case "multiply":
-      return multiply(x, y);
+      return parseFloat(x) * parseFloat(y);
       break;
     case "divide":
-      return divide(x, y);
+      if (y == 0) {
+        zeroDivide = true;
+      }
+      return parseFloat(x) / parseFloat(y);
       break;
   }
 }
